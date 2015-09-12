@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Main {
 	
 	public static void main(String[] args) {
+		//System.out.println(processLine("KKKKKDDDTTTTMMMMMKKKKTTYYYYYYYYR"));
 		BufferedReader bi = new BufferedReader(new InputStreamReader(System.in));
 		String line;
 		ArrayList<String> lines = new ArrayList<String>();
@@ -24,7 +25,27 @@ public class Main {
 	}
 
 	static String processLine(String line) {
-		// Process each line of input here
-		return line;
+		String response = "";
+		char[] letters = line.toCharArray();
+		char lastChar = '-';
+		int counter = 1;
+		for(char c : letters){
+			if(c == lastChar){
+				counter++;
+			}
+			else if(counter > 1){
+				response += counter;
+				counter = 1;
+				response += c;
+			}
+			else{
+				response += c;
+			}
+			lastChar = c;
+		}
+		if(counter > 1){
+			response += counter;
+		}
+		return response;
 	}
 }
